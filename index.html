@@ -12,11 +12,21 @@
         <h1>Calculadora de Experiencia</h1>
         <form id="expCalculator">
             <label for="currentLevel">Nivel Actual:</label>
-            <input type="number" id="currentLevel" name="currentLevel" min="1" required><br><br>
-            <label for="currentExp">Experiencia Actual:</label>
-            <input type="number" id="currentExp" name="currentExp" min="0" required><br><br>
+            <input type="number" id="currentLevel" name="currentLevel" min="1" value="1" required><br><br>
+
+            <label for="inputMode">Modo de Entrada:</label>
+            <select id="inputMode" name="inputMode">
+                <option value="points">Puntos de Experiencia</option>
+                <option value="percentage">Porcentaje del Nivel</option>
+            </select><br><br>
+
+            <div id="inputField">
+                <label for="currentExp">Experiencia Actual:</label>
+                <input type="number" id="currentExp" name="currentExp" min="0" value="0" required><br><br>
+            </div>
+
             <label for="targetLevel">Nivel Deseado:</label>
-            <input type="number" id="targetLevel" name="targetLevel" min="1" required><br><br>
+            <input type="number" id="targetLevel" name="targetLevel" min="1" value="2" required><br><br>
             <button type="submit">Calcular Experiencia</button>
         </form>
         <div id="result"></div>

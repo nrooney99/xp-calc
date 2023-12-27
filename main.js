@@ -2,7 +2,7 @@ document.getElementById('expCalculator').addEventListener('submit', function (e)
     e.preventDefault();
 
     const currentLevel = parseInt(document.getElementById('currentLevel').value);
-    const currentExp = parseInt(document.getElementById('currentExp').value);
+    const inputMode = document.getElementById('inputMode').value;
     const targetLevel = parseInt(document.getElementById('targetLevel').value);
 
     if (currentLevel >= targetLevel) {
@@ -14,6 +14,13 @@ document.getElementById('expCalculator').addEventListener('submit', function (e)
         .then(response => response.text())
         .then(data => {
             const levels = parseCSV(data);
+            let currentExp = 0;
+            if (inputMode === 'points') {
+                currentExp = parseInt(document.getElementById('currentExp').value);
+            } else if (inputMode === 'percentage') {
+                const percentage = parseInt(document.getElementById('currentExp').value);
+                currentExp = Math.round(calculateExperience(levels, currentLevel, currentLevel + 1) * (percentage / 100));
+            }
             const expNeeded = calculateExperience(levels, currentLevel, targetLevel) - currentExp;
             if (expNeeded > 0) {
                 document.getElementById('result').innerHTML = `La cantidad de experiencia necesaria es: ${expNeeded}`;
@@ -26,7 +33,6 @@ document.getElementById('expCalculator').addEventListener('submit', function (e)
             document.getElementById('result').innerHTML = 'Error al obtener los datos.';
         });
 });
-
 
 
 function parseCSV(csv) {
