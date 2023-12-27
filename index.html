@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Experiencia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculadora de Experiencia</h1>
+        <form id="expCalculator">
+            <label for="currentLevel">Nivel Actual:</label>
+            <input type="number" id="currentLevel" name="currentLevel" min="1" required><br><br>
+            <label for="currentExp">Experiencia Actual:</label>
+            <input type="number" id="currentExp" name="currentExp" min="0" required><br><br>
+            <label for="targetLevel">Nivel Deseado:</label>
+            <input type="number" id="targetLevel" name="targetLevel" min="1" required><br><br>
+            <button type="submit">Calcular Experiencia</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
