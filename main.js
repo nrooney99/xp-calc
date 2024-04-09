@@ -30,7 +30,7 @@ document.getElementById('expCalculator').addEventListener('submit', function (e)
                 expNeeded = levels[level] - currentExp;
                 totalExpNeeded += expNeeded;
                 currentExp = 0; // Después del primer nivel, la experiencia actual se reinicia
-                document.getElementById('result').innerHTML += `La cantidad total de experiencia necesaria hasta el nivel ${level + 1} es: ${totalExpNeeded}.&#10`
+                document.getElementById('result').innerHTML += `Para nivel ${level + 1}: ${totalExpNeeded} XP.&#10`
             }
 
         })

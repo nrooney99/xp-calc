@@ -11,9 +11,6 @@ body {
     background-color: #333333;
     color: #ffffff;
   }
-  div {
-    white-space: pre-wrap;
-}
   .container {
     max-width: 600px;
     margin: 0 auto;
