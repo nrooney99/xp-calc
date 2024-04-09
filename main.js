@@ -28,8 +28,8 @@ document.getElementById('expCalculator').addEventListener('submit', function (e)
                 expNeeded = levels[level] - currentExp;
                 totalExpNeeded += expNeeded;
                 currentExp = 0; // Después del primer nivel, la experiencia actual se reinicia
-                document.getElementById('result').innerHTML += `La cantidad total de experiencia necesaria hasta el nivel ${targetLevel} es: ${totalExpNeeded}`;
             }
+            document.getElementById('result').innerHTML += `La cantidad total de experiencia necesaria hasta el nivel ${targetLevel} es: ${totalExpNeeded}`;
 
         })
         .catch(error => {
