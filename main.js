@@ -56,3 +56,22 @@ function calculateExperience(levels, currentLevel, targetLevel) {
 
     return totalExp;
 }
+const toggleDarkModeButton = document.getElementById('toggleDarkMode');
+
+toggleDarkModeButton.addEventListener('click', function () {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+
+    // Guardar preferencia del usuario en el almacenamiento local
+    const isDarkModeEnabled = body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkModeEnabled);
+});
+
+// Cargar el estado del modo nocturno al cargar la página
+window.addEventListener('load', function () {
+    const isDarkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    const body = document.body;
+    if (isDarkModeEnabled) {
+        body.classList.add('dark-mode');
+    }
+});

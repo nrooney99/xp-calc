@@ -2,6 +2,15 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
   }
+  body.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+  
+  .dark-mode button {
+    background-color: #333333;
+    color: #ffffff;
+  }
   
   .container {
     max-width: 600px;
