@@ -5,6 +5,14 @@ document.getElementById('expCalculator').addEventListener('submit', function (e)
     const inputMode = document.getElementById('inputMode').value;
     const targetLevel = parseInt(document.getElementById('targetLevel').value);
 
+    let currentExp = 0;
+    if (inputMode === 'points') {
+        currentExp = parseInt(document.getElementById('currentExp').value);
+    } else if (inputMode === 'percentage') {
+        const percentage = parseInt(document.getElementById('currentExp').value);
+        currentExp = Math.round(calculateExperience(levels, currentLevel, currentLevel + 1) * (percentage / 100));
+    }
+
     if (currentLevel >= targetLevel) {
         document.getElementById('result').innerHTML = 'El nivel actual debe ser menor que el nivel deseado.';
         return;
@@ -14,25 +22,21 @@ document.getElementById('expCalculator').addEventListener('submit', function (e)
         .then(response => response.text())
         .then(data => {
             const levels = parseCSV(data);
-            let currentExp = 0;
-            if (inputMode === 'points') {
-                currentExp = parseInt(document.getElementById('currentExp').value);
-            } else if (inputMode === 'percentage') {
-                const percentage = parseInt(document.getElementById('currentExp').value);
-                currentExp = Math.round(calculateExperience(levels, currentLevel, currentLevel + 1) * (percentage / 100));
+            let totalExpNeeded = 0;
+            let expNeeded = 0;
+            for (let level = currentLevel; level < targetLevel; level++) {
+                expNeeded = levels[level] - currentExp;
+                totalExpNeeded += expNeeded;
+                currentExp = 0; // Después del primer nivel, la experiencia actual se reinicia
             }
-            const expNeeded = calculateExperience(levels, currentLevel, targetLevel) - currentExp;
-            if (expNeeded > 0) {
-                document.getElementById('result').innerHTML = `La cantidad de experiencia necesaria es: ${expNeeded}`;
-            } else {
-                document.getElementById('result').innerHTML = '¡Ya tienes suficiente experiencia para alcanzar ese nivel!';
-            }
+            document.getElementById('result').innerHTML = `La cantidad total de experiencia necesaria hasta el nivel ${targetLevel} es: ${totalExpNeeded}`;
         })
         .catch(error => {
             console.error('Error al obtener los datos:', error);
             document.getElementById('result').innerHTML = 'Error al obtener los datos.';
         });
 });
+
 
 
 function parseCSV(csv) {
