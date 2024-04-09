@@ -24,14 +24,15 @@ document.getElementById('expCalculator').addEventListener('submit', function (e)
             const levels = parseCSV(data);
             let totalExpNeeded = 0;
             let expNeeded = 0;
+            resultText = "";
             document.getElementById('result').innerHTML = '';
             for (let level = currentLevel; level < targetLevel; level++) {
                 expNeeded = levels[level] - currentExp;
                 totalExpNeeded += expNeeded;
                 currentExp = 0; // Después del primer nivel, la experiencia actual se reinicia
-                document.getElementById('result').innerHTML += `La cantidad total de experiencia necesaria hasta el nivel ${targetLevel} es: ${totalExpNeeded}\n`;
+                document.getElementById('result').innerHTML += `La cantidad total de experiencia necesaria hasta el nivel ${level} es: ${totalExpNeeded}
+                `
             }
-
 
         })
         .catch(error => {
